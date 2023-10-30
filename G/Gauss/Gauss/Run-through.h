@@ -1,5 +1,6 @@
 #include <iostream>
 #include "C:\Users\kiril\OneDrive\Рабочий стол\Библиотека\matrix.h"
+#define RANDOM
 
 using namespace std;
 
@@ -10,12 +11,10 @@ void RT()
 	cin >> n;
 	matrix Rt(n, n);
 	matrix R(n, n + 1);
-
+#ifdef RANDOM
 	//Подготовка матрицы
 	{ 
 		
-		//todo: Функция прямого хода straight_stroke(количество диагоналей, которые должны остаться (по умолчанию 1))
-
 		Rt.randomize_advanced(1, 10);
 		R.randomize_advanced(1, 10);
 
@@ -37,24 +36,36 @@ void RT()
 		cout << endl;
 
 	}
+#else
+		/*5 8 0 0 0 4
+		3 3 3 0 0 5
+		0 7 1 2 0 2
+		0 0 1 3 1 7
+		0 0 0 4 5 2*/
+#endif
+
 	//Вычисление
 	{
 		matrix X(n);
-		for (int i = 1; i < n; i++) {
-			double coef = R(i, i - 1) / R(i - 1, i - 1);
-			R(i, i) -= coef * R(i - 1, i - 1);
-			R(i, n + 1) -= coef * R(i - 1, n + 1);
-		}
-		m << R;
-		cout << endl;
+		matrix Q(n-1);
+		matrix P(n);
 
-		X(n - 1) = R(n - 1, n + 1) / R(n - 1, n - 1);
-		for (int i = n - 2; i >= 0; i--) {
-			double sum = R(i, n + 1);
-			for (int j = i + 1; j < n; j++) {
-				sum -= R(i, j) * X(j);
+		//Прямой ход
+		{
+			P(0) = R(0, n) / R(0, 0);
+			Q(0) = R(0, 1) / R(0, 0);
+			for (int i = 1; i < n; i++)
+			{
+				P(i) = (R(i, n) - R(i, i - 1) * P(i - 1)) / (R(i, i) - R(i, i - 1) * Q(i - 1));
+				Q(i) = R(i, i+1) / R(i, i) - R(i, i - 1) * Q(i - 1);
 			}
-			X(i) = sum / R(i, i);
+			P(n-1) = (R(n-1, n) - R(n-1, n - 1) * P(n - 1)) / (R(n-1, n-1) - R(n-1, n - 1) * Q(n - 1));
+		}
+		//Обратный ход
+		{
+			X(n - 1) = P(n - 1);
+			for (int i = n - 2; i >= 0; i--)//проверить
+				X(i) = P(i) - Q(i) * X(i + 1);
 		}
 		cout << endl;
 		m << X;
