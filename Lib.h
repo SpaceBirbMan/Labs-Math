@@ -10,8 +10,8 @@ float calcb(float a, float c);
 ///Расчитывает радиус вписанной окружности в треугольник (а,b,c - стороны треугольника)
 float calcr(float a, float b, float c);
 ///Создаёт случайные вещественные числа, принимая пороговые значения для выбора числа
-float GetRandomNumber(int min, int max);
-float SmRand(int A, int B);
+template <typename Tp> Tp GetRandomNumber(int min, int max);
+template <typename Tp> Tp SmRand(int A, int B);
 
 std::vector<float> stov(std::string input); //выводит данные из строки в вектор
 namespace Mtrx //class items
@@ -58,9 +58,9 @@ namespace Mtrx //class items
 	};
 }
 
-std::vector<float> vrand(std::vector<float> input);
-Mtrx::Matrix vtoar(std::vector<float> input); //переводит данные вещественного вектора в массив
-std::string vprint(std::vector<float> inp);
+std::vector<float> vrand(std::vector<float>& input); //заполняет вектор случайными числами, принимает изменяемый вектор
+Mtrx::Matrix vtoar(std::vector<float>& input); //переводит данные вещественного вектора в массив
+std::string vprint(const std::vector<float>& inp); //печатает вектор в консоль и выносит в строку
 float vmult(const std::vector<float> &inp); //перемножает все числа в векторе
 
 

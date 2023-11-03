@@ -3,7 +3,7 @@
 #define RANDOM
 
 using namespace std;
-
+using namespace matio;
 
 void RT()
 {

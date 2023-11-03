@@ -12,7 +12,8 @@
 
 
 //рандомайзер (от минимального до максимального значения)
-float GetRandomNumber(int min, int max)
+template <typename Tp>
+Tp GetRandomNumber(int min, int max)
 {
 	std::random_device rd;   // non-deterministic generator
 	std::mt19937 gen(rd());  // to seed mersenne twister.
@@ -20,7 +21,7 @@ float GetRandomNumber(int min, int max)
 	return dist(gen)+dist(gen)*0.1; // pass the generator to the distribution.
 }
 
-float SmRand(int A, int B)
+template <typename Tp> Tp SmRand(int A, int B)
 {
 	time_t now = time(0);
 	float res;
@@ -123,7 +124,7 @@ std::vector<float> stov(std::string input)
 				{
 					for (int j = 0; j < ml; j++)
 						{
-							M[i][j] =SmRand(-10,10); //присвоение случайного числа 
+							M[i][j] =SmRand<float>(-10,10); //присвоение случайного числа 
 						}
 				}
 			}
@@ -131,7 +132,7 @@ std::vector<float> stov(std::string input)
 			{
 				for (int i = 0; i < nl; i++)
 				{
-					A[i] = SmRand(-10,10); //присвоение случайного числа 
+					A[i] = SmRand<float>(-10,10); //присвоение случайного числа 
 				}
 			}
 			
@@ -223,7 +224,7 @@ float calcr(float a, float b, float c)
 	return (a + b - c)/2; //вычисление длины радиуса вписанной окружности
 }
 
-Mtrx::Matrix vtoar(std::vector<float> input)
+Mtrx::Matrix vtoar(std::vector<float>& input)
 {
 	int l = input.size(); //размер для создания массива
 	Mtrx::Matrix Out(l); //объект класса на вывод
@@ -279,16 +280,17 @@ Mtrx::Matrix stoar(std::string input)
 	
 }
 
-std::vector<float> vrand(std::vector<float> input)
+//заполняет вектор случайными числами, принимает изменяемый вектор
+std::vector<float> vrand(std::vector<float>& input)
 {
 	for (int i = 0; i < input.size(); i++)
 	{
-		input[i] = SmRand(-10,10);
+		input[i] = SmRand<float>(-10,10);
 	}
 	return input;
 }
 
-std::string vprint(std::vector<float> inp)
+std::string vprint(const std::vector<float>& inp)
 {
 	std::string out;
 	for (int i = 0; i < inp.size(); i++)

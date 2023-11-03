@@ -2,7 +2,7 @@
 #include <vector>
 #include "C:\Users\kiril\OneDrive\Рабочий стол\Библиотека\matrix.h"
 
-
+using namespace matio;
 
 void Gauss()
 {
