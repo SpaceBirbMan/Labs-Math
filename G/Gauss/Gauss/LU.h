@@ -6,71 +6,75 @@
 using namespace std;
 using namespace matio;
 
-void LU()
+void LU(int inv)
 {
 	int n = 0;
-	cin >> n;
-	matrix L(n, n);
-	matrix U(n, n);
-	matrix A(n, n);
+	cin >>  n;
+	matrix L(n, n), U(n, n), A(n, n);
+	matrix X(n), Y(n), B(n);
+
+
+
+	float sum1 = 0, sum2 = 0;
+
+	
+	L >> 0;
+	U >> 0;
 
 	A.randomize_advanced(1, 20);
-
-	L = A;
-	U = A;
 	
-	m << A;
+	B = A += n;
 
-	m << L;
-	for (int k = 0; k < n; k++)
+	B << B;
+	A << A;
+
+	float f = L(1, 1);
+
 	{
-		for (int i = k; i < n - 1; i++)
-			for (int j = k; j < k; j++)
-			{
-				if (i > j)
-				{
-					U(i, j) = (U(i, j) * U(k, k) - U(k, j) * U(i, k)) / U(k, k);
-				}
-				if (i == j)
-				{
-					L(i, j) = (L(i, j) * L(k, k) - L(k, j) * L(i, k)) / L(k, k);
-					U(i, j) = (U(i, j) * U(k, k) - U(k, j) * U(i, k)) / U(k, k);
-				}
-				if (i < j)
-				{
-					L(i, j) = (L(i, j) * L(k, k) - L(k, j) * L(i, k)) / L(k, k);
-				}
-			}
-		for (int i = k + 1; i < n; i++)
+		
+		for (int i = 0; i < n; i++)
 		{
-			U(i, k) = 0;
-			L(k, i) = 0;
-		}
-	}
-	m << L;
-	m << U;
-
-	for (int i = 0; i < n; i++)
-	{
-		A(i, 0) = L(i, 0);
-		U(0, i) = A(0, i) / L(0, 0);
-
-		for (int k = 2; k < n; k++)
-		{
-			float sum0, sum, sum2 = 0;
-			for (int m = 0; m < k-1; m++)
-			{
-				sum0 = L(i, m) * U(m, 1);
-				sum = L(i, m) * U(m, k);
-				sum2 = L(k, m) * U(m, i);
-			}
-			L(i, 1) = A(i, 1) - sum0;
-			L(i, k) = A(i, k) - sum;
-			U(k, i) = (1 / L(k, k)) * (A(k, i) - sum2);
+			L(i, 0) = A(i, 0);
+			U(0, i) = A(0, i) / f;
 		}
 
+		for (int k = 1; k < n; k++)
+		{
+			float f2 = L(k, k);
+
+			for (int i = k; i < n; i++)
+			{
+				for (int m = 0; m < k; m++)
+					sum1 = sum1 + L(i, m) * U(m, k);
+				L(i, k) = A(i, k) - sum1;
+			}
+
+			for (int j = k + 1; j < n; j++)
+			{
+				for (int m = 0; m < k; m++)
+					sum2 = sum2 + L(k, m) * U(m, j);
+				U(k, j) = (1 / f2) * (A(k, j) - sum2);
+			}
+		}
 	}
 	
+	L << L;
+	U << U;
+
+	{
+		Y(0) = B(0) / f;
+
+		float sum = 0;
+
+		for (int i = 1; i < n; i++)
+		{
+			for (int m = 0; m < i - 1; m++)
+				sum = L(i,m)*Y(m);
+			Y(i) = (1 / L(i, i)) * (B(i) - sum);
+		}
+	}
+
+
 }
 //int i = n - 1;
 //
