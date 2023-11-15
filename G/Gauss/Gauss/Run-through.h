@@ -5,7 +5,7 @@
 using namespace std;
 using namespace matio;
 
-void RT()
+void RT(int inv)
 {
 	int n = 0;
 	cin >> n;

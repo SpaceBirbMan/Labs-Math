@@ -1,30 +1,32 @@
-﻿#include <iostream>
+﻿#define CHOOSE 0
+#include <iostream>
 #include <vector>
 #include "C:\Users\kiril\OneDrive\Рабочий стол\Библиотека\matrix.h"
+#include "C:\Users\kiril\OneDrive\Рабочий стол\FINAL_COUNTDOWN\FINAL_COUNTDOWN\matrx.h"
 
 using namespace matio;
 
-void Gauss()
+void Gauss(int inv)
 {
+
+
 	std::cout.precision(2);
 
 	int n = 2;
 
 	std::cin >> n;
 
-	matrix F(n, n+1);
-	matrix M(n);	
+	
+#if CHOOSE /*<= inv*/
+	matrix F(n, n + 1);
+	matrix M(n);
 
-	matrix MJG(n , n+1);
+	matrix MJG(n, n + 1);
 
 	F.randomize_advanced(-10, 10); //заполнение
 	m << F;
 	unsigned int k = 1;
 	unsigned int km = 0;
-
-	
-
-	
 
 	for (k = 1; k <= n; k++) //прямой ход
 	{
@@ -136,5 +138,11 @@ void Gauss()
 		cout << "x" << i + 1 << " " << MJG.M[i][n] << endl;
 	}
 	cout << endl << endl;
-
+#else
+	nonstd::matrix <double> F2(n, n);
+	F2.randomize(1, 10);
+	std::cout << F2 << std::endl;
+	F2.inverse();
+	std::cout << F2;
+#endif
 }

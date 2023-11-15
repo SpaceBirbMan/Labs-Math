@@ -13,19 +13,18 @@ void LU(int inv)
 	matrix L(n, n), U(n, n), A(n, n+1);
 	matrix X(n), Y(n), B(n);
 	
-	L >> 0;
+	L >> 0; //инициализация матриц нулями
 	U >> 0;
 
 	A.randomize_advanced(1, 20);
 	
-	B = A += n+1;
+	B = A += n+1; //копия столбца в массив
 
-	B << B;
-	A << A;
+	B << B; //вывод
+	A << A; //вывод 
 
 
 	{
-		
 		for (int i = 0; i < n; i++)
 			L(i, 0) = A(i, 0);
 		for (int j = 1; j < n; j++)

@@ -2,6 +2,8 @@
 #include "Gauss.h"
 #include "Run-through.h"
 #include "LU.h"
+#include "Quads.h"
+#include "SInert.h"
 
 using namespace std;
 
@@ -17,14 +19,17 @@ int main()
 
 	cout << "Использовать обратную матрицу [WIP]" << endl;
 
-	unsigned int a;
+	unsigned int ch_calc, ch_inv;
 
-	cin >> a;
-	switch (a)
+	cin >> ch_calc;
+	cin >> ch_inv;
+	switch (ch_calc)
 	{
-		case 1: {Gauss(); break; }
-		case 2: {RT(); break; }
-		case 3: {LU(); break; }
+	case 1: {Gauss(ch_inv); break; }
+	case 2: {RT(ch_inv); break; }
+	case 3: {LU(ch_inv); break; }
+	case 4: {Quads(ch_inv); break; }
+	case 5: {SIter(ch_inv); break; }
 	}
 		
 	

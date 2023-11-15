@@ -6,13 +6,20 @@
 void Quads(int inv)
 {
 
-	int n = 0;
-	cin >> n;
+	int n = 5;
 
 	matrix A(n, 1 + n), L(n, n), U(n, n);
 	matrix B(n), Y(n), X(n);
 
-	A.randomize_advanced(0, 10);
+	/*A.randomize_advanced(0, 10);*/
+
+	A(0, 0) = 9; A(0, 1) = 6; A(0, 2) = 3; A(0, 3) = 1; A(0, 4) = 3; A(0, 5) = 35;
+	A(1, 0) = 6; A(1, 1) = 8; A(1, 2) = 4; A(1, 3) = 4; A(1, 4) = 6; A(1, 5) = 48;
+	A(2, 0) = 3; A(2, 1) = 4; A(2, 2) = 4; A(2, 3) = 1; A(2, 4) = 4; A(2, 5) = 29;
+	A(3, 0) = 1; A(3, 1) = 4; A(3, 2) = 1; A(3, 3) = 8; A(3, 4) = 3; A(3, 5) = 31;
+	A(4, 0) = 3; A(4, 1) = 6; A(4, 2) = 4; A(4, 3) = 3; A(4, 4) = 9; A(4, 5) = 41;
+	//проверка на невырожденность в новой матрице
+		
 
 	B = A += n + 1;
 	
@@ -24,7 +31,7 @@ void Quads(int inv)
 	{
 		L(0, 0) = sqrt(A(0, 0));
 
-		for (int i = 0; i < n; i++)
+		for (int i = 1; i < n; i++)
 			L(i, 0) = A(i, 0) / L(0, 0);
 
 		for (int k = 1; k < n; k++)
@@ -58,7 +65,7 @@ void Quads(int inv)
 		for (int i = 1; i < n; i++)
 		{
 			Y(i) = B(i);
-			for (int m = 0; m < i - 1; m++)
+			for (int m = 0; m < i; m++)
 				Y(i) = Y(i) - L(i, m) * Y(m);
 			Y(i) = Y(i) / L(i, i);
 		}
@@ -71,7 +78,7 @@ void Quads(int inv)
 		for (int i = n - 1 /* n - 2*/; i >= 0; i--)
 		{
 			X(i) = Y(i);
-			for (int m = i + 1; i < n; m++)
+			for (int m = i + 1; m < n; m++)
 				X(i) = X(i) - U(i, m) * X(m);
 			X(i) = X(i) / U(i, i);
 		}
