@@ -140,7 +140,16 @@ void Gauss(int inv)
 	cout << endl << endl;
 #else
 	nonstd::matrix <double> F2(n, n);
-	F2.randomize(1, 10);
+	F2.randomize_advanced(1, 10);
+//nonstd::matrix <double> F2(
+//	{ 
+//	{2, 1, 2, 3, 9},
+//	{2, 5, 3, 5, 4},
+//	{2, 1, 5, 5, 7},
+//	{4, 8, 3, 7, 7},
+//	{1, 7, 5, 7, 5} 
+//	});
+
 	std::cout << F2 << std::endl;
 	F2.inverse();
 	std::cout << F2;
