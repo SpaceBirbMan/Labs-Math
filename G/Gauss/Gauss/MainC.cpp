@@ -15,13 +15,14 @@ int main()
 	cout << "2 - Прогонка" << endl;
 	cout << "3 - LU" << endl;
 	cout << "4 - Квадратные корни" << endl;
-	cout << "5 - Метод простых итераций" << endl;
+	cout << "5 - Метод Зейделя" << endl;
 
-	cout << "Использовать обратную матрицу [WIP]" << endl;
+	
 
 	unsigned int ch_calc, ch_inv;
 
 	cin >> ch_calc;
+	cout << "1 - Расчитывать обратную матрицу (Метод простых итераций для 5), 0 - Обычный расчёт" << endl;
 	cin >> ch_inv;
 	switch (ch_calc)
 	{

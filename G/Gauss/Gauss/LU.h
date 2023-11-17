@@ -1,4 +1,6 @@
+#define CHOOSE 0
 #include "C:\Users\kiril\OneDrive\Рабочий стол\Библиотека\matrix.h"
+#include "C:\Users\kiril\OneDrive\Рабочий стол\FINAL_COUNTDOWN\FINAL_COUNTDOWN\matrx.h"
 #include <iostream>
 #pragma once
 
@@ -8,6 +10,7 @@ using namespace matio;
 
 void LU(int inv)
 {
+#if CHOOSE
 	int n = 0;
 	cin >>  n;
 	matrix L(n, n), U(n, n), A(n, n+1);
@@ -77,6 +80,16 @@ void LU(int inv)
 	}
 
 	X << X;
+
+#else
+	int n = 0;
+	cin >> n;
+
+	nonstd::matrix <float> A(n, n);
+	A.randomize_advanced(1, 10);
+	A.inverse("lu");
+	cout << A;
+#endif
 }
 //int i = n - 1;
 //
