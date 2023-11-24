@@ -82,11 +82,22 @@ void LU(int inv)
 	X << X;
 
 #else
-	int n = 0;
-	cin >> n;
+	int n = 5;
+	/*cin >> n;*/
 
-	nonstd::matrix <float> A(n, n);
-	A.randomize_advanced(1, 10);
+	nonstd::matrix <double> A
+	({
+		{2,1,2,3,9},
+		{2,5,3,5,4},
+		{2,1,5,5,7},
+		{4,8,3,7,7},
+		{1,7,5,7,5}
+		}
+	);
+	/*A.randomize_advanced(1, 10);*/
+
+	cout << A << '\n';
+
 	A.inverse("lu");
 	cout << A;
 #endif
