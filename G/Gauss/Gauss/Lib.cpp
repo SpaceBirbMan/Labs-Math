@@ -12,8 +12,7 @@
 
 
 //рандомайзер (от минимального до максимального значения)
-template <typename Tp>
-Tp GetRandomNumber(int min, int max)
+float GetRandomNumber(int min, int max)
 {
 	std::random_device rd;   // non-deterministic generator
 	std::mt19937 gen(rd());  // to seed mersenne twister.
@@ -21,7 +20,7 @@ Tp GetRandomNumber(int min, int max)
 	return dist(gen)+dist(gen)*0.1; // pass the generator to the distribution.
 }
 
-template <typename Tp> Tp SmRand(int A, int B)
+float SmRand(int A, int B)
 {
 	time_t now = time(0);
 	float res;
@@ -124,7 +123,7 @@ std::vector<float> stov(std::string input)
 				{
 					for (int j = 0; j < ml; j++)
 						{
-							M[i][j] =SmRand<float>(-10,10); //присвоение случайного числа 
+							M[i][j] =SmRand(-10,10); //присвоение случайного числа 
 						}
 				}
 			}
@@ -132,10 +131,32 @@ std::vector<float> stov(std::string input)
 			{
 				for (int i = 0; i < nl; i++)
 				{
-					A[i] = SmRand<float>(-10,10); //присвоение случайного числа 
+					A[i] = SmRand(-10,10); //присвоение случайного числа 
 				}
 			}
 			
+		}
+
+		void Mtrx::Matrix::randomize_advanced(int min, int max) //рандомайзер матрицы (от минимального до максимального значения)
+		{
+			if (M != NULL) //если у нас матрица
+			{
+				for (int i = 0; i < nl; i++)
+				{
+					for (int j = 0; j < ml; j++)
+					{
+						M[i][j] = GetRandomNumber(-10, 10); //присвоение случайного числа 
+					}
+				}
+			}
+			if (A != NULL) //если у нас массив
+			{
+				for (int i = 0; i < nl; i++)
+				{
+					A[i] = GetRandomNumber(-10, 10); //присвоение случайного числа 
+				}
+			}
+
 		}
 
 		float Mtrx::Matrix::AMult() //перемножает все числа в массиве
@@ -175,6 +196,27 @@ std::vector<float> stov(std::string input)
 			std::cout << std::endl;
 			return data; //если нам надо куда-то вывести строку
 		}
+
+		float Mtrx::Matrix::operator () (int x, int y)
+		{
+			if (y > -1)
+				return M[x][y];
+			else
+			return A[x];
+		}
+
+		Mtrx::Matrix& Mtrx::Matrix::operator = (const Matrix& R)
+		{
+			if (&R != this)
+			{
+				if (this->A != nullptr)
+					A = R.A;
+				if (this->M != nullptr)
+					M = R.M;
+			}
+			return *this;
+		}
+
 	
 
 		Mtrx::File::File (std::string name)
@@ -224,7 +266,7 @@ float calcr(float a, float b, float c)
 	return (a + b - c)/2; //вычисление длины радиуса вписанной окружности
 }
 
-Mtrx::Matrix vtoar(std::vector<float>& input)
+Mtrx::Matrix vtoar(std::vector<float> input)
 {
 	int l = input.size(); //размер для создания массива
 	Mtrx::Matrix Out(l); //объект класса на вывод
@@ -280,17 +322,16 @@ Mtrx::Matrix stoar(std::string input)
 	
 }
 
-//заполняет вектор случайными числами, принимает изменяемый вектор
-std::vector<float> vrand(std::vector<float>& input)
+std::vector<float> vrand(std::vector<float> input)
 {
 	for (int i = 0; i < input.size(); i++)
 	{
-		input[i] = SmRand<float>(-10,10);
+		input[i] = SmRand(-10,10);
 	}
 	return input;
 }
 
-std::string vprint(const std::vector<float>& inp)
+std::string vprint(std::vector<float> inp)
 {
 	std::string out;
 	for (int i = 0; i < inp.size(); i++)

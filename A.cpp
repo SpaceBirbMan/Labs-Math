@@ -9,8 +9,11 @@ using namespace std;
 
 
 
-int main()
+int main(int argc, char* argv[])
 {
+	int c = 2;
+	start:
+
 	//Константа точности для проверки вещественных чисел на точность подсчёта
 	const float EPS = 0.01;
 	///Блок проверок
@@ -34,4 +37,24 @@ int main()
 	std::cout << "For given sides of a right triangle " << a << " and " << c1 << std::endl;
 	std::cout << "The second leg is equal " << b << std::endl;
 	std::cout << "The radius of the circle is " << r;
+
+	if (argc > 1)
+	{
+		cout << argv[1] << endl;
+
+		string arg = argv[1];
+
+		if (arg == "no_retry")
+		{
+			return 0;
+		}
+	}
+	
+		char fch;
+		cout << "Retry?" << endl;
+		cin >> fch;
+		if (fch == 'y') goto start;
+		else return 0;
+	
+	
 }

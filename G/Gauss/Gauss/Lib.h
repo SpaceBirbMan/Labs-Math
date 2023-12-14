@@ -10,8 +10,8 @@ float calcb(float a, float c);
 ///Расчитывает радиус вписанной окружности в треугольник (а,b,c - стороны треугольника)
 float calcr(float a, float b, float c);
 ///Создаёт случайные вещественные числа, принимая пороговые значения для выбора числа
-template <typename Tp> Tp GetRandomNumber(int min, int max);
-template <typename Tp> Tp SmRand(int A, int B);
+float GetRandomNumber(int min, int max);
+float SmRand(int A, int B);
 
 std::vector<float> stov(std::string input); //выводит данные из строки в вектор
 namespace Mtrx //class items
@@ -28,6 +28,9 @@ namespace Mtrx //class items
 		float** M = NULL; //указатель на матрицу
 		float* A = NULL; //указатель на массив
 
+		float operator () (int x, int y = -1);
+		Matrix& operator = (const Matrix& R);
+		
 		unsigned int nl = 0; //строки
 		unsigned int ml = 0; //столбцы
 
@@ -37,6 +40,7 @@ namespace Mtrx //class items
 		void clean(); //очищает конструкцию 
 
 		void randomize(int min, int max); //рандомайзер матрицы
+		void randomize_advanced(int min, int max); //рандомайзер матрицы
 		float AMult(); //перемножает числа в массиве
 		std::string print(); //выводит на экран и в строку массив/матрицу
 	};
@@ -58,9 +62,9 @@ namespace Mtrx //class items
 	};
 }
 
-std::vector<float> vrand(std::vector<float>& input); //заполняет вектор случайными числами, принимает изменяемый вектор
-Mtrx::Matrix vtoar(std::vector<float>& input); //переводит данные вещественного вектора в массив
-std::string vprint(const std::vector<float>& inp); //печатает вектор в консоль и выносит в строку
+std::vector<float> vrand(std::vector<float> input);
+Mtrx::Matrix vtoar(std::vector<float> input); //переводит данные вещественного вектора в массив
+std::string vprint(std::vector<float> inp);
 float vmult(const std::vector<float> &inp); //перемножает все числа в векторе
 
 
