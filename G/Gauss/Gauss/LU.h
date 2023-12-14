@@ -10,7 +10,7 @@ using namespace matio;
 
 void LU(int inv)
 {
-#if CHOOSE
+#if CHOOSE <= inv
 	int n = 0;
 	cin >>  n;
 	matrix L(n, n), U(n, n), A(n, n+1);

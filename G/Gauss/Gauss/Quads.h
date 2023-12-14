@@ -1,3 +1,4 @@
+#define CHOOSE 0
 #pragma once
 #include "C:\Users\kiril\OneDrive\Рабочий стол\Библиотека\matrix.h"
 #include <iostream>
@@ -5,7 +6,7 @@
 
 void Quads(int inv)
 {
-
+#if CHOOSE < inv
 	int n = 5;
 
 	matrix A(n, 1 + n), L(n, n), U(n, n);
@@ -85,4 +86,24 @@ void Quads(int inv)
 	}
 
 	X << X;
+#else
+
+	nonstd::matrix <double> A
+	({
+		{9,6,3,1,3},
+		{6,8,4,4,6},
+		{3,4,4,1,4},
+		{1,4,1,8,3},
+		{3,6,4,3,9}
+		}
+	);
+
+	/*A.randomize_advanced(1, 10);*/
+	cout << A;
+
+	A.inverse("sqrt");
+
+	cout << A;
+
+#endif
 }

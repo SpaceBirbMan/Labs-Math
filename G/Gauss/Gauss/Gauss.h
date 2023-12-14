@@ -17,7 +17,7 @@ void Gauss(int inv)
 	std::cin >> n;
 
 	
-#if CHOOSE /*<= inv*/
+#if CHOOSE <= inv
 	matrix F(n, n + 1);
 	matrix M(n);
 
