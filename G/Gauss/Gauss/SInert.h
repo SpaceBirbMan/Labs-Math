@@ -44,7 +44,7 @@ void SIter(int kc)
 			XN[k] = XN[k] / A(k, k);
 			if (abs(XN[k] - XO[k]) > EPS) fl = false;
 		}
-		string outstr = "Èòåðàö. " + to_string(itr);
+		string outstr = "Итер. " + to_string(itr);
 		for (int e = 0; e < n; e++)
 			outstr += " " + to_string(XN[e]);
 		cout << outstr << endl;
