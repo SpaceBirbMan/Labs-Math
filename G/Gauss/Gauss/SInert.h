@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <cmath>
-#include "C:\Users\kiril\OneDrive\Рабочий стол\FINAL_COUNTDOWN\FINAL_COUNTDOWN\matrx.h"
+#include "C:\Users\kiril\OneDrive\ГђГ ГЎГ®Г·ГЁГ© Г±ГІГ®Г«\FINAL_COUNTDOWN\FINAL_COUNTDOWN\matrx.h" //Р±РёР±Р»РёРѕС‚РµРєР° РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ EXPER MATRIX
 
 using namespace std;
 
@@ -14,7 +14,7 @@ void SIter(int kc)
 	float* XN = new float[n];
 	float* XO = new float[n];
 
-		A(0, 0) = 28; A(0, 1) = 1; A(0, 2) = 1; A(0, 3) = 1; A(0, 4) = 3; A(0, 5) = 38;
+		A(0, 0) = 28; A(0, 1) = 1; A(0, 2) = 1; A(0, 3) = 1; A(0, 4) = 3; A(0, 5) = 38; 
 		A(1, 0) = 2; A(1, 1) = 23; A(1, 2) = 3; A(1, 3) = 4; A(1, 4) = 2; A(1, 5) = 67;
 		A(2, 0) = 5; A(2, 1) = 2; A(2, 2) = 39; A(2, 3) = 1; A(2, 4) = 3; A(2, 5) = 131;
 		A(3, 0) = 2; A(3, 1) = 4; A(3, 2) = 2; A(3, 3) = 24; A(3, 4) = 2; A(3, 5) = 66;
@@ -38,13 +38,13 @@ void SIter(int kc)
 			for (int j = 0; j < n; j++)
 				if (j != k)
 					if (kc == 1)
-					XN[k] = XN[k] - A(k, j) * XO[j]; //итерации
+					XN[k] = XN[k] - A(k, j) * XO[j]; //РёС‚РµСЂР°С†РёРё
 					else
-					XN[k] = XN[k] - A(k, j) * XN[j]; //Зейдель
+					XN[k] = XN[k] - A(k, j) * XN[j]; //Р·РµР№РґРµР»СЊ
 			XN[k] = XN[k] / A(k, k);
 			if (abs(XN[k] - XO[k]) > EPS) fl = false;
 		}
-		string outstr = "Итерац. " + to_string(itr);
+		string outstr = "РС‚РµСЂ. " + to_string(itr);
 		for (int e = 0; e < n; e++)
 			outstr += " " + to_string(XN[e]);
 		cout << outstr << endl;
