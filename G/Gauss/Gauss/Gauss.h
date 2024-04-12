@@ -1,10 +1,7 @@
 ﻿#define CHOOSE 0
-#include <iostream>
-#include <vector>
-#include "C:\Users\kiril\OneDrive\Рабочий стол\Библиотека\matrix.h"
-#include "C:\Users\kiril\OneDrive\Рабочий стол\FINAL_COUNTDOWN\FINAL_COUNTDOWN\matrx.h"
+#include "LibConcentrator.h"
 
-using namespace matio;
+using namespace nstd::matio;
 
 void Gauss(int inv)
 {
@@ -18,10 +15,10 @@ void Gauss(int inv)
 
 	
 #if CHOOSE <= inv
-	matrix F(n, n + 1);
-	matrix M(n);
+	nstd::matrix F(n, n + 1);
+	nstd::matrix M(n);
 
-	matrix MJG(n, n + 1);
+	nstd::matrix MJG(n, n + 1);
 
 	F.randomize_advanced(-10, 10); //заполнение
 	m << F;

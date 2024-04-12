@@ -1,16 +1,15 @@
-#include <iostream>
-#include "C:\Users\kiril\OneDrive\Рабочий стол\Библиотека\matrix.h"
+#include "LibConcentrator.h"
 #define RANDOM
 
 using namespace std;
-using namespace matio;
+using namespace nstd::matio;
 
 void RT(int inv)
 {
 	int n = 0;
 	cin >> n;
-	matrix Rt(n, n);
-	matrix R(n, n + 1);
+	nstd::matrix Rt(n, n);
+	nstd::matrix R(n, n + 1);
 #ifdef RANDOM
 	//Подготовка матрицы
 	{ 
@@ -46,18 +45,18 @@ void RT(int inv)
 
 	//Вычисление
 	{
-		matrix X(n);
-		matrix Q(n-1);
-		matrix P(n);
+		nstd::matrix X(n);
+		nstd::matrix Q(n-1);
+		nstd::matrix P(n);
 
 		//Прямой ход
 		{
 			P(0) = R(0, n) / R(0, 0);
 			Q(0) = R(0, 1) / R(0, 0);
-			matrix f(n);
-			matrix l(n);
-			matrix c(n);
-			matrix r(n);
+			nstd::matrix f(n);
+			nstd::matrix l(n);
+			nstd::matrix c(n);
+			nstd::matrix r(n);
 
 			//столбец свободных коэффициентов
 			for (int i = 0; i < n; i++) {

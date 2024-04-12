@@ -1,8 +1,5 @@
 #pragma once
-#include <iostream>
-#include <cmath>
-#include "C:\Users\kiril\OneDrive\Рабочий стол\FINAL_COUNTDOWN\FINAL_COUNTDOWN\matrx.h"
-
+#include "LibConcentrator.h"
 using namespace std;
 
 void SIter(int kc)

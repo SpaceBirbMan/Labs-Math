@@ -1,20 +1,17 @@
 #define CHOOSE 0
-#include "C:\Users\kiril\OneDrive\Рабочий стол\Библиотека\matrix.h"
-#include "C:\Users\kiril\OneDrive\Рабочий стол\FINAL_COUNTDOWN\FINAL_COUNTDOWN\matrx.h"
-#include <iostream>
+#include "LibConcentrator.h"
 #pragma once
 
 
 using namespace std;
-using namespace matio;
 
 void LU(int inv)
 {
 #if CHOOSE <= inv
 	int n = 0;
 	cin >>  n;
-	matrix L(n, n), U(n, n), A(n, n+1);
-	matrix X(n), Y(n), B(n);
+	nstd::matrix L(n, n), U(n, n), A(n, n+1);
+	nstd::matrix X(n), Y(n), B(n);
 	
 	L >> 0; //инициализация матриц нулями
 	U >> 0;

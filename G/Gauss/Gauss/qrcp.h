@@ -1,5 +1,5 @@
 #pragma once
-#include "C:\Users\kiril\OneDrive\Рабочий стол\FINAL_COUNTDOWN\FINAL_COUNTDOWN\matrx.h"
+#include "LibConcentrator.h"
 
 void Qr()
 {

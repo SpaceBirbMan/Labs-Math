@@ -1,8 +1,6 @@
 #define CHOOSE 0
 #pragma once
-#include "C:\Users\kiril\OneDrive\Рабочий стол\Библиотека\matrix.h"
-#include <iostream>
-#include <cmath>
+#include "LibConcentrator.h"
 
 void Quads(int inv)
 {
