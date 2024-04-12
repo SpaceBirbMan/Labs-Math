@@ -15,6 +15,7 @@ using namespace std;
 int main()
 {
 	setlocale(LC_ALL, "russian");
+	start:
 	cout << "Методы решения:" << endl;
 	cout << "1 - Гаусс и Жордан-Гаусс" << endl;
 	cout << "2 - Прогонка" << endl;
@@ -64,5 +65,7 @@ int main()
 	case 8: { combin_method(); break; }
 	case 9: { interpolation(ch_inv); break; }
 	case 10: { iDiff(); break; }
+	case 11: { I(); break; }
+	default: goto start;
 	}
 }
